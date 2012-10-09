@@ -23,6 +23,7 @@
         <h2>List of tutors</h2>
     </div>
 {% for tutor in Tutor_list %}
+    {% if tutor.approved %}
     <div class="row">
         <h4>{{ tutor.name }}</h4>
         <p><a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a></p>
@@ -31,6 +32,7 @@
         <p>{{ tutor.description }}</p>
         <br>
     </div>
+    {% endif %}
 {% endfor %}
 </div>
 </body>

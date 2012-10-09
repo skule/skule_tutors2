@@ -6,6 +6,7 @@ class Tutor(models.Model):
     phone = models.CharField(max_length=20)
     description = models.TextField()
     rate = models.DecimalField(decimal_places=2, max_digits=10)
+    approved = models.BooleanField(default=False)
     last_updated = models.DateTimeField(auto_now=True, auto_created=True)
 
     def __unicode__(self):

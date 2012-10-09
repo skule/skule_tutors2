@@ -5,7 +5,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Oliver Liang', 'oliver.liang@mail.utoronto.ca'),
+    ('Oliver Liang', 'oliver.liang@mail.utoronto.ca'),
 )
 
 MANAGERS = ADMINS
