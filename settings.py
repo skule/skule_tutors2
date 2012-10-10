@@ -95,7 +95,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'urls.py'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = ('C:/Users/Oliver/Skule_dev/skule_tutors2/templates',)
 
