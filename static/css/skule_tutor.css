@@ -1,8 +1,16 @@
+.navbar {
+    border-bottom: 3px solid #0e002d;
+}
+
+.navbar-inner {
+    border-bottom: 3px solid #0e002d;
+}
+
 .navbar-inner #logo {
     padding: 5px;
     margin: 0 15px 0 0;
     width: 80px;
-    background-color: #000253;
+    background-color: #0e002d;
 }
 
 /* TODO put this in a desktop only css file */
