@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block title %}Skule Tutors{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/skule_tutor.css" type="text/css" media="all">
+
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+    <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+        <a class="brand" id="logo" href="http://skule.ca" rel="nofollow">
+            <img src="{{ STATIC_URL }}img/logo.png" alt="Skule">
+        </a>
+        <div class="nav-collapse collapse">
+            <ul class="nav">
+                <li><a>Work in progress</a></li>
+                <li><a class="pull-right" href="/admin">admin</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="container" id="body_container">
+{% block content %}
+<!-- CONTENT GOES HERE -->
+{% endblock %}
+</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+</body>
+</html>
