@@ -19,6 +19,8 @@
                 <p>{{ tutor.description }}</p>
             </div>
         {% endif %}
+    {% empty %}
+        <h3>Sorry, there are currently no tutors registered.</h3>
     {% endfor %}
 </div>
 
