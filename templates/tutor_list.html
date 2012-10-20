@@ -11,7 +11,7 @@
 <div class="row-fluid">
     {% for tutor in Tutor_list %}
         {% if tutor.approved %}
-            <div class="span4 tutor">
+            <div class="span3 tutor">
                 <h4>{{ tutor.name }}</h4>
                 <p><a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a></p>
                 <p>{{ tutor.phone }}</p>
