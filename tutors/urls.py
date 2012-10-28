@@ -9,5 +9,6 @@ urlpatterns = patterns('',
                        # url(r'^$', 'skule_tutors2.views.home', name='home'),
                        # url(r'^skule_tutors2/', include('skule_tutors2.foo.urls')),
                        url(r'^application$', TutorApplication),
+                       url(r'^search$', SearchTutors)
 
 )

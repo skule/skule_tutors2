@@ -13,4 +13,4 @@ class ApplicationForm(forms.Form):
     phone = forms.CharField()
     taught_courses = forms.ModelMultipleChoiceField(queryset = Course.objects.all())
     rate = forms.DecimalField(decimal_places = 2, max_digits = 10)
-    description = forms.CharField(widget = forms.Textarea)
+    qualifications = forms.CharField(widget = forms.Textarea)

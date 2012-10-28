@@ -2,6 +2,8 @@
 
 {% block title %}Skule Tutors{% endblock %}
 
+{% block search_field %}{{ query }}{% endblock %}
+
 {% block content %}
     <div class="tutors-list">
         <article>
@@ -59,10 +61,7 @@
             {% empty %}
                 <section class="span11 ">
                     <div class="alert alert-block alert-info">
-                        <h3>No tutors registered</h3>
-
-                        <p class="lead">We're in the process of inputting tutors into our system. Please try again
-                            later.</p>
+                        <p class="lead">No tutors found, please try another query.</p>
                     </div>
                 </section>
             {% endfor %}
