@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Course_Manage.models import Course
+from models import Course
 
 __author__ = 'Oliver'
 

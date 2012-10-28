@@ -3,27 +3,36 @@
 {% block title %}Skule Tutors{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="span12">
-        <h2>List of tutors</h2>
-    </div>
-</div>
-<div class="row-fluid">
-    {% for tutor in Tutor_list %}
-        {% if tutor.approved %}
-            <div class="span3 tutor">
-                <h4>{{ tutor.name }}</h4>
-                <p><a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a></p>
-                <p>{{ tutor.phone }}</p>
-                <p>Rate: ${{ tutor.rate }}</p>
-                <p>{{ tutor.description }}</p>
-            </div>
-        {% endif %}
-    {% empty %}
+    <div class="row">
         <div class="span12">
-            <h3>Sorry, there are currently no tutors registered.</h3>
+            <h2>List of tutors</h2>
         </div>
-    {% endfor %}
-</div>
+    </div>
+    <div class="row-fluid">
+        {% for tutor in Tutor_list %}
+            {% if tutor.approved %}
+                <div class="span3 tutor">
+                    <h4>{{ tutor.name }}</h4>
+
+                    <p><a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a></p>
+
+                    <p>{{ tutor.phone }}</p>
+
+                    <p>Rate: ${{ tutor.rate }}</p>
+
+                    <p>{{ tutor.description }}</p>
+                    <ul>
+                        {% for course in tutor.taught_courses.all %}
+                            <li>{{ course.course_code }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% empty %}
+            <div class="span12">
+                <h3>Sorry, there are currently no tutors registered.</h3>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
