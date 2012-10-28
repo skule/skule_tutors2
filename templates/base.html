@@ -78,10 +78,10 @@
                     </li>
                     <li>
                         <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
-                            <input type="search" name="search" placeholder="Search by course code or tutor name"
-                                   class="span3"
-                                   value='{% block search_field %}{% endblock %}'><input
-                                type="submit" class="btn" value="Search">
+                            <input type="search" name="query" placeholder="Search by course code or tutor name"
+                                   class="span3" value='{% block search_field %}{% endblock %}'>
+
+                            <input type="submit" class="btn" value="Search">
                         </form>
                     </li>
                 </ul>
