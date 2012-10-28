@@ -6,6 +6,8 @@
 
 {% block content %}
     <div class="tutors-list">
+        <h2 class="page-header">Tutors found for <em>{{ query }}</em></h2>
+
         <article>
             {% for tutor in Tutor_list %}
                 {% if tutor.approved %}

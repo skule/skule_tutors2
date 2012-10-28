@@ -59,8 +59,8 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
 
 
 def SearchTutors(request, template = 'tutors/search.html'):
-    if request.GET.get('query'):
-        search_terms = request.GET.get('query').split(' ')
+    if request.GET.get('search'):
+        search_terms = request.GET.get('search').split(' ')
 
         # result of matching courses by course
         matching_courses = [ ]
@@ -89,7 +89,7 @@ def SearchTutors(request, template = 'tutors/search.html'):
                 for tutor in course.tutor_set.all():
                     result.append(tutor)
 
-        return render_to_response(template, {'Tutor_list': result, 'query': request.GET.get('query')},
+        return render_to_response(template, {'Tutor_list': result, 'query': request.GET.get('search')},
                                   context_instance = RequestContext(request))
     else:
         return HttpResponseRedirect('/')
