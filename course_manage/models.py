@@ -7,7 +7,7 @@ class Course(models.Model):
     course_code = models.CharField(verbose_name = 'Course Code', max_length = 7, primary_key = True)
     name = models.CharField(verbose_name = 'Course Name', max_length = 50)
 
-    description = models.TextField()
+    description = models.TextField(blank = True)
 
     def save(self, *args, **kwargs):
         """ Make the course code always in upper case """
