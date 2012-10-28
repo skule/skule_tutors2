@@ -15,7 +15,7 @@ urlpatterns = patterns('',
                        # url(r'^$', 'skule_tutors2.views.home', name='home'),
                        # url(r'^skule_tutors2/', include('skule_tutors2.foo.urls')),
                        url(r'^$',
-                           generic.ListView.as_view(queryset = Tutor.objects.filter(approved = True).order_by(?),
+                           generic.ListView.as_view(queryset = Tutor.objects.filter(approved = True).order_by('?'),
                                                     context_object_name = 'Tutor_list',
                                                     template_name = "tutor_list.html")),
 
