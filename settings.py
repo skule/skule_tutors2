@@ -117,8 +117,14 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    'skule_tutors2.tutors',
+    #'django.contrib.admindocs',
+
+    #installed apps
+    'emailusernames',
+
+    #skule apps
+    'tutors',
+    'course_manage'
     )
 
 # A sample logging configuration. The only tangible logging
@@ -144,3 +150,7 @@ LOGGING = {
     }
 }
 
+#django-email-as-username settings
+AUTHENTICATION_BACKENDS = (
+    'emailusernames.backends.EmailAuthBackend',
+    )

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Skule Tutors{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span12">
+            <h2>Apply to be a tutor</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <form action="{% url tutors.views.TutorApplication %}" method="post">{% csrf_token %}
+                {{ user_creation_form.as_p }}
+                {{ profile_creation_form.as_p }}
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

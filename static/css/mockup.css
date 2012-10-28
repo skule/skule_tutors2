@@ -1,0 +1,95 @@
+/* Skule Tutors */
+
+body.skuletutors {
+    background: #fff;
+}
+
+body.skuletutors #logo {
+    margin-left: -20px;
+    margin-bottom: 0;
+}
+
+body.skuletutors .page-container h1.page-header {
+    color: rgb(254, 112, 56);
+    font-weight: 200;
+    border: 0;
+    margin-bottom: 0;
+}
+
+body.skuletutors .header-row {
+    border-bottom: 4px solid rgb(254, 112, 56);
+}
+
+body.skuletutors .user-actions {
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-size: 1.25em;
+    font-weight: 200;
+}
+
+body.skuletutors .tutor-name, body.skuletutors .tutoring {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+body.skuletutors .tutor .courses {
+    border-bottom: 1px solid #ccc;
+}
+
+body.skuletutors .courses .course-list {
+    margin: 0;
+    padding: 0;
+}
+
+body.skuletutors .courses .course-list li {
+    list-style-type: none;
+    display: inline;
+    margin: 0;
+}
+
+body.skuletutors .courses .course-list li a {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid #ccc;
+}
+
+body.skuletutors .courses .course-list li:first-child a {
+    padding-left: 0;
+}
+
+body.skuletutors .qualifications h5,
+body.skuletutors .tutoring h5 {
+    margin: 0;
+}
+
+body.skuletutors .tutor .contact-info {
+    margin-top: 10px;
+}
+
+body.skuletutors .navbar-skuleworks .navbar-inner {
+    background: #ffffff;
+    border-bottom: 4px solid #0e002d;
+}
+
+body.skuletutors .navbar-inner #logo {
+    position: relative;
+    float: left;
+    margin-left: -20px;
+    margin-bottom: 0;
+    background: #0e002d;
+}
+
+body.skuletutors .navbar-inner #logo a {
+    display: block;
+    width: 72px;
+    padding: 10px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background: transparent url("http://tutors.skule.ca/static/img/logo.png") 50% 50% no-repeat scroll;
+    background-size: 72px;
+}
+
+body.skuletutors footer {
+    padding-top: 20px;
+}
