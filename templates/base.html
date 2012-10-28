@@ -58,28 +58,37 @@
                 <span class="icon-bar"></span>
             </a>
 
-            <a class="brand" id="logo" href="http://skule.ca" rel="nofollow">
-                <img src="{{ STATIC_URL }}img/logo.png" alt="Skule">
-            </a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Academic Services <b
+                        <a href="#" class="brand dropdown-toggle" id="logo" data-toggle="dropdown"><img src="{{ STATIC_URL }}img/logo.png" alt="Skule"> Tutors <b
                                 class="caret hide-tablet hide-phone"></b></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+
+
                             <li>
-                                <a tabindex="-1" class="active" href="#">Skule Tutors</a>
+                                <a tabindex="-1" href="http://www.skule.ca/academic-services">Skule&trade; Academic Services</a>
+                            </li>
+                            <li class="divider"></li>
+
+                            <li>
+                                <a tabindex="-1" href="/">Tutors  <span class="muted">Tutors database</span></a>
                             </li>
                             <li>
-                                <a tabindex="-1" href="http://courses.skule.ca">Skule Courses</a>
+                                <a tabindex="-1" href="http://courses.skule.ca">Courses <span class="muted">Past exams</span></a>
                             </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a tabindex="-1" href="http://www.skule.ca">Go to <strong>Skule&trade;.ca</strong> &rsaquo;</a>
+                            </li>
+
                         </ul>
                     </li>
                     <li>
                         <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
                             <input type="search" name="search" placeholder="Search by course code or tutor name"
-                                   class="span4"
+                                   class="input-xlarge"
                                    value='{% block search_field %}{% endblock %}'><input
                                 type="submit" class="btn" value="Search">
                         </form>
@@ -92,27 +101,30 @@
 
 <div class="page-container container">
     <div class="row header-row">
-        <h1 class="page-header span9">
-            Skule Tutors
+        <h1 class="span9">
+            <a href="/">Skule Tutors</a>
         </h1>
 
         <div class="span3">
             {% if user.is_authenticated %}
                 <p class="user-actions">
-                    <a href="#">{{ user.first_name }} {{ user.last_name }}</a>
+                    <a href="#">{{ user.email }} </a>
                 </p>
-                <div class="btn-group">
-                    <a class="btn">Edit profile ›</a> <a class="btn">Logout ›</a>
+                <div class="btn-group pull-right">
+                    <a class="btn" href="{% url django.contrib.auth.views.logout %}">Logout</a>
                 </div>
             {% else %}
-                <p class="user-actions">
-                    <a href="#"></a>
-                    <br>
-                </p>
-                <div class="btn-group">
-                    <a class="btn" href="{% url tutors.views.TutorApplication %}">Apply to be a Tutor</a>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-info" href="{% url tutors.views.TutorApplication %}">Apply to be a Tutor</a>
+                    <a class="btn" href="{% url django.contrib.auth.views.login %}">Log in</a>
                 </div>
             {% endif %}
+        </div>
+    </div>
+    <div class="row header-row">
+        <div class="span12">
+            <hr>
+
         </div>
     </div>
     {% block content %}
