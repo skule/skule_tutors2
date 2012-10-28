@@ -34,7 +34,7 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
             user.save()
 
             # Create the tutor profile
-            tutor = Tutor(
+            tutor = Tutor.objects.create(
                 name = profile_data[ 'first_name' ] + ' ' + profile_data[ 'last_name' ],
                 email = user_data[ 'email' ],
                 phone = profile_data[ 'phone' ],
@@ -42,7 +42,6 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
                 rate = profile_data[ 'rate' ],
                 auth = user,
             )
-            tutor.save()
             for course in profile_data[ 'taught_courses' ]:
                 tutor.taught_courses.add(course)
             tutor.save()
