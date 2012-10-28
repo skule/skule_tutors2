@@ -59,11 +59,9 @@
                 {% endif %}
 
             {% empty %}
-                <section class="span11 ">
-                    <br>
-
-                    <div class="alert alert-block alert-info">
-                        <p class="lead">No tutors found, please try another query.</p>
+                <section>
+                    <div class="alert alert-block">
+                        <p class="lead">No tutors found for <em>{{ query }}</em>.</p>
                     </div>
                 </section>
             {% endfor %}

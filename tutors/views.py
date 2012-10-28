@@ -1,5 +1,6 @@
 from emailusernames.forms import EmailUserCreationForm
 from django.contrib.auth.models import Group
+from django.contrib import messages
 from forms import ApplicationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -45,6 +46,7 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
                 tutor.taught_courses.add(course)
             tutor.save()
 
+            messages.add_message(request, messages.INFO, 'Your application has been successfully received and is pending approval. Thank you for applying for Skule Tutors.')
             return HttpResponseRedirect('/')
     else:
         user_creation_form = EmailUserCreationForm()

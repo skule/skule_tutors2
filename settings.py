@@ -154,3 +154,5 @@ LOGGING = {
 AUTHENTICATION_BACKENDS = (
     'emailusernames.backends.EmailAuthBackend',
     )
+
+LOGIN_REDIRECT_URL = '/'

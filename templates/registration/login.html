@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Skule Tutors - Login{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="row">
+        <div class="span4 offset4">
+            {% if form.errors %}
+                <p class="alert fade in  alert-block alert-error">Incorrect login information. <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </p>
+            {% endif %}
+    <div class="well">
+    <h2>Log in as a Tutor</h2>
+    <form method="post" action="{% url django.contrib.auth.views.login %}">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <input type="submit"  class="btn btn-large btn-info" value="Log in" />
+        <input type="hidden" name="next" value="{{ next }}" />
+
+    </form>
+
+    <hr>
+            <p><strong>Want to apply to be a tutor?</strong> <a href="{% url tutors.views.TutorApplication %}">Register here.</a></p>
+
+    </div>
+        </div>
+    </div>
+{% endblock %}

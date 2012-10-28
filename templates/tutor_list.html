@@ -3,6 +3,36 @@
 {% block title %}Skule Tutors{% endblock %}
 
 {% block content %}
+
+    <header class="well fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <br />
+        <div class="row-fluid">
+            <div class="span8">
+                <h3>Find a tutor</h3>
+                <p class="lead">Skule&trade; Tutors is the official tutors database for U of T Engineering.</p>
+                <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
+                    <input type="search" name="search" placeholder="Search by course code or tutor name"
+                           class="input-xxlarge"
+                           value='{% block search_field %}{% endblock %}'><input
+                        type="submit" class="btn btn-inverse" value="Search">
+                </form>
+            </div>
+            <div class="span4">
+                <h3>Become a tutor</h3>
+                <p>Applications for Skule Tutors are now open</p>
+                <a class="btn" href="{% url tutors.views.TutorApplication %}">Apply to be a tutor</a>
+
+            </div>
+        </div>
+
+    </header>
+
+
+    <div class="page-header">
+    <h2>List of tutors</h2>
+    </div>
+
     <div class="tutors-list">
         <article>
             {% for tutor in Tutor_list %}
@@ -12,7 +42,7 @@
                         <div class="row contact-info">
                             <div class="span3 tutor-name">
                                 <p class="lead">
-                                    <strong><a href="#">{{ tutor.name }}</a></strong>
+                                    <strong>{{ tutor.name }}</strong>
                                 </p>
                             </div>
                             <div class="span3">
@@ -57,14 +87,11 @@
                 {% endif %}
 
             {% empty %}
-                <section class="span11 ">
-                    <br>
+                <section>
+                    <div class="well">
+                        <h3>Coming soon</h3>
 
-                    <div class="alert alert-block alert-info">
-                        <h3>No tutors registered</h3>
-
-                        <p class="lead">We're in the process of inputting tutors into our system. Please try again
-                            later.</p>
+                        <p class="lead">Skule Tutors is coming soon. Please check back later!</p>
                     </div>
                 </section>
             {% endfor %}
