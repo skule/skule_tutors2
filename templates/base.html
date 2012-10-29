@@ -122,20 +122,35 @@
         </div>
     </div>
     <div class="row header-row">
-        <div class="span12">
-            <hr>
-
-        </div>
+    <hr class="span12">
     </div>
+    <div class="row">
+        {% if messages %}
+            <div class="span12">
+                <div class=" alert alert-block alert-info">
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
     {% block content %}
         <!-- CONTENT GOES HERE -->
     {% endblock %}
     <footer class="row">
         <p class="muted span5">
-            <small>© University of Toronto Engineering Society, 2012. All rights reserved.</small>
+            A service of the <a href="http://skule.ca/about-us">University of Toronto Engineering Society</a>
         </p>
         <p class="muted span1 pull-right">
-            <small><a href="/admin">Admin</a></small>
+            <a class="pull-right" href="/admin">Admin</a>
         </p>
     </footer>
 </div>
