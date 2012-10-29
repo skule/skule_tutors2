@@ -10,26 +10,30 @@ from emailusernames.forms import EmailAuthenticationForm
 
 admin.autodiscover()
 
+if settings.OPEN_SIGNUP:
+    home_template = "tutor_list_open.html"
+else:
+    home_template = "tutor_list_closed.html"
+
 urlpatterns = patterns('',
                        # Examples:
                        # url(r'^$', 'skule_tutors2.views.home', name='home'),
                        # url(r'^skule_tutors2/', include('skule_tutors2.foo.urls')),
 
-    url(r'^tutors/', include('tutors.urls')),
+                       url(r'^tutors/', include('tutors.urls')),
 
 
-    url(r'^$',
+                       url(r'^$',
                            generic.ListView.as_view(queryset = Tutor.objects.filter(approved = True).order_by('?'),
                                                     context_object_name = 'Tutor_list',
-                                                    template_name = "tutor_list.html")),
+                                                    template_name = home_template)),
 
 
+                       #Email as username login
+                       url(r'^auth/login$', 'django.contrib.auth.views.login',
+                           {'authentication_form': EmailAuthenticationForm}, name = 'login'),
 
-                        #Email as username login
-                        url(r'^auth/login$', 'django.contrib.auth.views.login',
-                            {'authentication_form': EmailAuthenticationForm }, name='login'),
-
-                        url(r'^auth/logout', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+                       url(r'^auth/logout', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 
                        # Uncomment the admin/doc line below to enable admin documentation:
                        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

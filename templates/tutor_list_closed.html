@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Skule Tutors{% endblock %}
+
+{% block content %}
+
+    <header class="fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <br>
+
+        <div class="well">
+            <div class="row-fluid ">
+                <div class="span8">
+                    <p class="lead">Skule&trade; Tutors is the official tutors database for U of T Engineering.</p>
+                    <h4>Find a tutor</h4>
+
+                    <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
+                        <input type="search" name="search" placeholder="Find a tutor by course code or tutor name"
+                               class="input-xxlarge"
+                               value='{% block search_field %}{% endblock %}'><input
+                            type="submit" class="btn btn-inverse" value="Search">
+                    </form>
+                </div>
+                <div class="span4">
+                    <h3>Become a tutor</h3>
+
+                    <p>Applications for Skule Tutors will be opening soon.</p>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+    <div class="page-header">
+        <h2>List of tutors</h2>
+    </div>
+
+    <div class="tutors-list">
+        <article>
+            <section>
+                <div class="well">
+                    <h3>Coming soon</h3>
+
+                    <p class="lead">Skule Tutors is coming soon. Please check back later!</p>
+                </div>
+            </section>
+        </article>
+    </div>
+{% endblock %}
