@@ -20,12 +20,13 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
             user_data = user_creation_form.cleaned_data
             user = create_user(user_data[ 'email' ], user_data[ 'password1' ])
 
-            tutors_group = Group.objects.filter(name = 'Tutors')
-            if not tutors_group:
-                tutors_group = [ Group(name = 'Tutors').save() ]
+            try:
+                tutors_group = Group.objects.get(name = 'Tutors')
+            except Group.DoesNotExist:
+                tutors_group = Group.objects.create(name = 'Tutors')
 
             user.is_staff = False
-            user.groups.add(tutors_group[ 0 ])
+            user.groups.add(tutors_group)
 
             profile_data = profile_creation_form.cleaned_data
             user.first_name = profile_data[ 'first_name' ]
@@ -33,7 +34,7 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
             user.save()
 
             # Create the tutor profile
-            tutor = Tutor(
+            tutor = Tutor.objects.create(
                 name = profile_data[ 'first_name' ] + ' ' + profile_data[ 'last_name' ],
                 email = user_data[ 'email' ],
                 phone = profile_data[ 'phone' ],
@@ -41,12 +42,13 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
                 rate = profile_data[ 'rate' ],
                 auth = user,
             )
-            tutor.save()
             for course in profile_data[ 'taught_courses' ]:
                 tutor.taught_courses.add(course)
             tutor.save()
 
-            messages.add_message(request, messages.INFO, 'Your application has been successfully received and is pending approval. Thank you for applying for Skule Tutors.')
+            messages.add_message(request, messages.INFO,
+                                 'Your application has been successfully received and is pending approval. Thank you '
+                                 'for applying for Skule Tutors.')
             return HttpResponseRedirect('/')
     else:
         user_creation_form = EmailUserCreationForm()
