@@ -7,97 +7,44 @@
     <header class="fade in">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <br>
-        <div class="well">
-        <div class="row-fluid ">
-            <div class="span8">
-                <p class="lead">Skule&trade; Tutors is the official tutors database for U of T Engineering.</p>
-                <h4>Find a tutor</h4>
-                <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
-                    <input type="search" name="search" placeholder="Find a tutor by course code or tutor name"
-                           class="input-xxlarge"
-                           value='{% block search_field %}{% endblock %}'><input
-                        type="submit" class="btn btn-inverse" value="Search">
-                </form>
-            </div>
-            <div class="span4">
-                <h3>Become a tutor</h3>
-                <p>Applications for Skule Tutors are now open.</p>
-                <a class="btn" href="{% url tutors.views.TutorApplication %}">Apply to be a tutor</a>
 
+        <div class="well">
+            <div class="row-fluid ">
+                <div class="span8">
+                    <p class="lead">Skule&trade; Tutors is the official tutors database for U of T Engineering.</p>
+                    <h4>Find a tutor</h4>
+
+                    <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
+                        <input type="search" name="search" placeholder="Find a tutor by course code or tutor name"
+                               class="input-xxlarge"
+                               value='{% block search_field %}{% endblock %}'><input
+                            type="submit" class="btn btn-inverse" value="Search">
+                    </form>
+                </div>
+                <div class="span4">
+                    <h3>Become a tutor</h3>
+
+                    <p>Applications for Skule Tutors will be opening soon.</p>
+                </div>
             </div>
-        </div>
         </div>
 
     </header>
 
 
     <div class="page-header">
-    <h2>List of tutors</h2>
+        <h2>List of tutors</h2>
     </div>
 
     <div class="tutors-list">
         <article>
-            {% for tutor in Tutor_list %}
-                {% if tutor.approved %}
-                    <section class="tutor">
+            <section>
+                <div class="well">
+                    <h3>Coming soon</h3>
 
-                        <div class="row contact-info">
-                            <div class="span3 tutor-name">
-                                <p class="lead">
-                                    <strong>{{ tutor.name }}</strong>
-                                </p>
-                            </div>
-                            <div class="span3">
-                                <p class="lead">
-                                    {{ tutor.phone }}
-                                </p>
-                            </div>
-                            <div class="span4">
-                                <p class="lead">
-                                    <a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a>
-                                </p>
-                            </div>
-                            <div class="span2">
-                                <p class="lead">
-                                    ${{ tutor.rate }}<span class="muted">/hr</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row courses">
-                            <div class="span6 tutoring">
-                                <h5 class="muted">
-                                    Tutoring offered in
-                                </h5>
-                                <ul class="course-list">
-                                    {% for course in tutor.taught_courses.all %}
-                                        <li>{{ course.course_code }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="span6 qualifications">
-                                <h5 class="muted">
-                                    Qualifications
-                                </h5>
-
-                                <p>
-                                    {{ tutor.qualifications }}
-                                </p>
-                            </div>
-                        </div>
-
-                    </section>
-                {% endif %}
-
-            {% empty %}
-                <section>
-                    <div class="well">
-                        <h3>Coming soon</h3>
-
-                        <p class="lead">Skule Tutors is coming soon. Please check back later!</p>
-                    </div>
-                </section>
-            {% endfor %}
-
+                    <p class="lead">Skule Tutors is coming soon. Please check back later!</p>
+                </div>
+            </section>
         </article>
     </div>
 {% endblock %}

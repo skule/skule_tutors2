@@ -8,9 +8,13 @@ from django.template import RequestContext
 from emailusernames.utils import create_user
 from models import Tutor
 from course_manage.models import Course
+from django.conf import settings
 # Create your views here.
 
 def TutorApplication(request, template = 'tutors/tutor_application.html'):
+    if not settings.OPEN_SIGNUP:
+        return HttpResponseRedirect('/')
+
     if request.method == 'POST':
         user_creation_form = EmailUserCreationForm(request.POST)
         profile_creation_form = ApplicationForm(request.POST)
