@@ -26,26 +26,7 @@
           rel='stylesheet' type='text/css'>
     <!-- wordpress head functions -->
     <!-- end of wordpress head -->
-    <!-- drop Google Analytics Here -->
 
-    <script type="text/javascript">
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-34549763-1']);
-        _gaq.push(['_setDomainName', 'skule.ca']);
-        _gaq.push(['_trackPageview']);
-
-        (function () {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
-
-    </script>
-    <!-- end analytics -->
 </head>
 
 <body class="skuletutors">
@@ -62,25 +43,29 @@
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li>
-                        <a href="#" class="brand dropdown-toggle" id="logo" data-toggle="dropdown"><img src="{{ STATIC_URL }}img/logo.png" alt="Skule"> Tutors <b
+                        <a href="#" class="brand dropdown-toggle" id="logo" data-toggle="dropdown"><img
+                                src="{{ STATIC_URL }}img/logo.png" alt="Skule"> Tutors <b
                                 class="caret hide-tablet hide-phone"></b></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 
 
                             <li>
-                                <a tabindex="-1" href="http://www.skule.ca/academic-services">Skule&trade; Academic Services</a>
+                                <a tabindex="-1" href="http://www.skule.ca/academic-services">Skule&trade; Academic
+                                    Services</a>
                             </li>
                             <li class="divider"></li>
 
                             <li>
-                                <a tabindex="-1" href="/">Tutors  <span class="muted">Tutors database</span></a>
+                                <a tabindex="-1" href="/">Tutors <span class="muted">Tutors database</span></a>
                             </li>
                             <li>
-                                <a tabindex="-1" href="http://courses.skule.ca">Courses <span class="muted">Past exams</span></a>
+                                <a tabindex="-1" href="http://courses.skule.ca">Courses <span
+                                        class="muted">Past exams</span></a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a tabindex="-1" href="http://www.skule.ca">Go to <strong>Skule&trade;.ca</strong> &rsaquo;</a>
+                                <a tabindex="-1" href="http://www.skule.ca">Go to
+                                    <strong>Skule&trade;.ca</strong> &rsaquo;</a>
                             </li>
 
                         </ul>
@@ -122,7 +107,7 @@
         </div>
     </div>
     <div class="row header-row">
-    <hr class="span12">
+        <hr class="span12">
     </div>
     <div class="row">
         {% if messages %}
@@ -149,6 +134,7 @@
         <p class="muted span5">
             A service of the <a href="http://skule.ca/about-us">University of Toronto Engineering Society</a>
         </p>
+
         <p class="muted span1 pull-right">
             <a class="pull-right" href="/admin">Admin</a>
         </p>

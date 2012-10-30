@@ -7,8 +7,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from emailusernames.utils import create_user
 from models import Tutor
-from course_manage.models import Course
 from django.conf import settings
+from search import strSearchTutors
+from django.utils.html import escape
 # Create your views here.
 
 def TutorApplication(request, template = 'tutors/tutor_application.html'):
@@ -66,36 +67,11 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
 
 def SearchTutors(request, template = 'tutors/search.html'):
     if request.GET.get('search'):
-        search_terms = request.GET.get('search').split(' ')
+        search_terms = escape(request.GET.get('search'))
 
-        # result of matching courses by course
-        matching_courses = [ ]
-        for term in search_terms:
-            try:
-                course = Course.objects.get(course_code__icontains = term)
-                if course:
-                    matching_courses.append(course)
-            except Course.DoesNotExist:
-                pass
+        result = strSearchTutors(search_terms)
 
-        # result of matching names
-        matching_names = Tutor.objects.filter(name__icontains = search_terms[ 0 ])
-        for term in search_terms[ 1: ]:
-            matching_names = matching_names.filter(name__icontains = term)
-
-        # match the two searches
-        result = [ ]
-        if matching_names:
-            for course in matching_courses:
-                for tutor in matching_names:
-                    if course in tutor.taught_courses:
-                        result.append(tutor)
-        else:
-            for course in matching_courses:
-                for tutor in course.tutor_set.all():
-                    result.append(tutor)
-
-        return render_to_response(template, {'Tutor_list': result, 'query': request.GET.get('search')},
+        return render_to_response(template, {'Tutor_list': result, 'query': search_terms},
                                   context_instance = RequestContext(request))
     else:
         return HttpResponseRedirect('/')

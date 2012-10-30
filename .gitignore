@@ -42,3 +42,6 @@ nosetests.xml
 
 #sqlite
 *.db
+
+#logs
+logs.txt
