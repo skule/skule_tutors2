@@ -158,7 +158,7 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/'
 
-OPEN_SIGNUP = False
+OPEN_SIGNUP = True
 
 import dj_database_url
 
