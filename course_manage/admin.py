@@ -3,4 +3,9 @@ from models import Course
 
 __author__ = 'Oliver'
 
-admin.site.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = [ 'year', 'course_code', 'name' ]
+    list_filter = [ 'year' ]
+    search_fields = [ 'year', 'course_code', 'name' ]
+
+admin.site.register(Course, CourseAdmin)
