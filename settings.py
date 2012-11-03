@@ -62,7 +62,7 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://tutors.skule.ca/static/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
@@ -124,7 +124,7 @@ INSTALLED_APPS = (
 
     #skule apps
     'tutors',
-    'course_manage'
+    'course_manage',
 
     # server
     'gunicorn'
