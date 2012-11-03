@@ -1,1 +1,1 @@
-web: gunicorn skule_tutors2.wsgi -b 0.0.0.0:$PORT
+web: gunicorn skule_tutors2 -b 0.0.0.0:$PORT
