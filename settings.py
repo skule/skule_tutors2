@@ -125,6 +125,9 @@ INSTALLED_APPS = (
     #skule apps
     'tutors',
     'course_manage'
+
+    # server
+    'gunicorn'
     )
 
 # A sample logging configuration. The only tangible logging
