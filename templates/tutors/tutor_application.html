@@ -11,11 +11,17 @@
     <div class="row">
         <div class="span12">
             <form action="{% url tutors.views.TutorApplication %}" method="post">{% csrf_token %}
-                {{ user_creation_form.as_p }}
-                {{ profile_creation_form.as_p }}
-
+                <div class="row">
+                    <div class="span6">
+                        {{ user_creation_form.as_p }}
+                    </div>
+                    <div class="span6">
+                        {{ profile_creation_form.as_p }}
+                    </div>
+                </div>
                 <div class="well well-small">
                     <h4>By signing up to become a tutor, you agree to the following terms and conditions:</h4>
+
                     <p>I will not tutor a student for a course I am currently a TA, marker or instructor for or
                         am in any way associated with. I am aware that an academic investigation and sanctions
                         may arise if this occurs. </p>
@@ -24,7 +30,7 @@
                         privately arranged between myself and the student. The Faculty of Applied Science and
                         The Engineering Society takes no responsibility for non payment or conflicts that may
                         arise from any of these aforementioned items or anything directly or indirectly related.</p>
-               </div>
+                </div>
 
                 <input type="submit" class="btn btn-info" value="Submit application"/>
             </form>
