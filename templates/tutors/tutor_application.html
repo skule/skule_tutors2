@@ -13,10 +13,25 @@
             <form action="{% url tutors.views.TutorApplication %}" method="post">{% csrf_token %}
                 <div class="row">
                     <div class="span6">
-                        {{ user_creation_form.as_p }}
+                        {{ user_creation_form.non_field_errors }}
+                        {% for field in user_creation_form %}
+                            {{ field.errors }}
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.help_text %}
+                                <span class="help-block">{{ field.help_text }}</span>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="span6">
-                        {{ profile_creation_form.as_p }}
+                        {% for field in profile_creation_form %}
+                            {{ field.errors }}
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.help_text %}
+                                <span class="help-block">{{ field.help_text }}</span>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="well well-small">

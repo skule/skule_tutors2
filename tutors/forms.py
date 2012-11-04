@@ -11,6 +11,8 @@ class ApplicationForm(forms.Form):
     first_name = forms.CharField()
     last_name = forms.CharField()
     phone = forms.CharField(required = False)
+
+    # TODO use chosen for the multi-select fieldhttp://harvesthq.github.com/chosen/
     taught_courses = forms.ModelMultipleChoiceField(queryset = Course.objects.all())
     rate = forms.DecimalField(decimal_places = 2, max_digits = 10)
     qualifications = forms.CharField(widget = forms.Textarea)
