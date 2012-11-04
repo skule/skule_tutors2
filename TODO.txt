@@ -1,4 +1,3 @@
 Refine application form - split account and profile creation
 Add view by course
 delete behaviour - deactivate user when their profile is deleted.
-Gunicorn deploy
