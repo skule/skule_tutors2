@@ -26,6 +26,8 @@
           rel='stylesheet' type='text/css'>
     <!-- wordpress head functions -->
     <!-- end of wordpress head -->
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 
 </head>
 
@@ -72,7 +74,7 @@
                     </li>
                     <li>
                         <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
-                            <input type="search" name="search" placeholder="Search by course code or tutor name"
+                            <input type="search" name="search" placeholder="Find your tutor"
                                    class="input-xlarge search-query"
                                    value='{% block search_field %}{% endblock %}'>
                             <input type="submit" class="btn" value="Search">
@@ -99,6 +101,7 @@
                     <a class="btn" href="{% url django.contrib.auth.views.logout %}">Logout</a>
                 </div>
             {% else %}
+                <br>
                 <div class="btn-group pull-right">
                     <a class="btn btn-info" href="{% url tutors.views.TutorApplication %}">Apply to be a Tutor</a>
                     <a class="btn" href="{% url django.contrib.auth.views.login %}">Log in</a>
@@ -140,7 +143,5 @@
         </p>
     </footer>
 </div>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 </body>
 </html>

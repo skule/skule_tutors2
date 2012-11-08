@@ -16,15 +16,15 @@
 
                     <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
                         <input type="search" name="search" placeholder="Find a tutor by course code or tutor name"
-                               class="input-xxlarge"
-                               value='{% block search_field %}{% endblock %}'><input
-                            type="submit" class="btn btn-inverse" value="Search">
+                               class="input-xxlarge search-query"
+                               value='{% block search_field %}{% endblock %}'>
+                        <input type="submit" class="btn" value="Search">
                     </form>
                 </div>
                 <div class="span4">
                     <h3>Become a tutor</h3>
-
-                    <p>Applications for Skule Tutors are now open.</p>
+                    <!-- TODO reformat this box so things lines up -->
+                    <p style="margin-bottom:5px;">Applications for Skule Tutors are now open.</p>
                     <a class="btn btn-info" href="{% url tutors.views.TutorApplication %}">Apply to be a tutor</a>
 
                 </div>
@@ -78,13 +78,14 @@
                                 </ul>
                             </div>
                             <div class="span6 qualifications">
-                                <h5 class="muted">
+                                <h5 data-toggle="collapse" data-target="#qualifications{{ forloop.counter }}">
                                     Qualifications
                                 </h5>
-
-                                <p>
-                                    {{ tutor.qualifications }}
-                                </p>
+                                <ul class="unstyled collapsed" id="qualifications{{ forloop.counter }}" data-toggle="collapse">
+                                {% for line in tutor.qualifications_as_list %}
+                                <li>{{ line }}</li>
+                                {% endfor %}
+                                </ul>
                             </div>
                         </div>
 
