@@ -77,11 +77,12 @@
                                     {% endfor %}
                                 </ul>
                             </div>
-                            <div class="span6 qualifications">
-                                <h5 data-toggle="collapse" data-target="#qualifications{{ forloop.counter }}">
+                            <div class="span6 qualifications" id="qualification_div{{ forloop.counter }}">
+                                <h5 data-toggle="collapse" data-target="#qualifications{{ forloop.counter }}" data-parent="#qualification_div{{ forloop.counter }}">
                                     Qualifications
                                 </h5>
-                                <ul class="unstyled collapsed" id="qualifications{{ forloop.counter }}" data-toggle="collapse">
+                                <!-- TODO http://jsfiddle.net/rlemon/g8c8A/6/ -->
+                                <ul class="unstyled collapse" id="qualifications{{ forloop.counter }}" data-toggle="collapse" style="height:20px;">
                                 {% for line in tutor.qualifications_as_list %}
                                 <li>{{ line }}</li>
                                 {% endfor %}
