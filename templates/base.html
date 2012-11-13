@@ -88,20 +88,18 @@
 
 <div class="page-container container">
     <div class="row header-row">
-        <h1 class="span9">
-            <a href="/">Skule Tutors</a>
-        </h1>
+        <div class="span9">
+            <h1><a href="/">Skule Tutors</a></h1>
+        </div>
 
         <div class="span3">
+                <br>
             {% if user.is_authenticated %}
-                <p class="user-actions">
-                    <a href="#">{{ user.email }} </a>
-                </p>
                 <div class="btn-group pull-right">
+                    <a href="#" class="btn btn-info disabled">{{ user.email }} </a>
                     <a class="btn" href="{% url django.contrib.auth.views.logout %}">Logout</a>
                 </div>
             {% else %}
-                <br>
                 <div class="btn-group pull-right">
                     <a class="btn btn-info" href="{% url tutors.views.TutorApplication %}">Apply to be a Tutor</a>
                     <a class="btn" href="{% url django.contrib.auth.views.login %}">Log in</a>

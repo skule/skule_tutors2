@@ -101,3 +101,7 @@ body.skuletutors .errorlist {
     list-style-type: none;
     margin: 0;
 }
+
+input {
+    width: 300px;
+}
