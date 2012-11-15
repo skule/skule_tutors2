@@ -22,10 +22,12 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" type="text/css" media="all">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css" type="text/css" media="all">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/skule_tutor.css" type="text/css" media="all">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic'
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic'
           rel='stylesheet' type='text/css'>
     <!-- wordpress head functions -->
     <!-- end of wordpress head -->
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 
 </head>
 
@@ -72,10 +74,10 @@
                     </li>
                     <li>
                         <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
-                            <input type="search" name="search" placeholder="Search by course code or tutor name"
-                                   class="input-xlarge"
-                                   value='{% block search_field %}{% endblock %}'><input
-                                type="submit" class="btn" value="Search">
+                            <input type="search" name="search" placeholder="Find your tutor"
+                                   class="input-xlarge search-query"
+                                   value='{% block search_field %}{% endblock %}'>
+                            <input type="submit" class="btn" value="Search">
                         </form>
                     </li>
                 </ul>
@@ -86,16 +88,15 @@
 
 <div class="page-container container">
     <div class="row header-row">
-        <h1 class="span9">
-            <a href="/">Skule Tutors</a>
-        </h1>
+        <div class="span9">
+            <h1><a href="/">Skule Tutors</a></h1>
+        </div>
 
         <div class="span3">
+                <br>
             {% if user.is_authenticated %}
-                <p class="user-actions">
-                    <a href="#">{{ user.email }} </a>
-                </p>
                 <div class="btn-group pull-right">
+                    <a href="#" class="btn btn-info disabled">{{ user.email }} </a>
                     <a class="btn" href="{% url django.contrib.auth.views.logout %}">Logout</a>
                 </div>
             {% else %}
@@ -140,7 +141,5 @@
         </p>
     </footer>
 </div>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 </body>
 </html>

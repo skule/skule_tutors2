@@ -34,14 +34,14 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
             user.groups.add(tutors_group)
 
             profile_data = profile_creation_form.cleaned_data
-            user.first_name = profile_data[ 'first_name' ]
-            user.last_name = profile_data[ 'last_name' ]
+            user.first_name = profile_data[ 'first_name' ][ 0 ].upper() + profile_data[ 'first_name' ][ 1: ].lower()
+            user.last_name = profile_data[ 'last_name' ][ 0 ].upper() + profile_data[ 'last_name' ][ 1: ].lower()
             user.save()
 
             # Create the tutor profile
             tutor = Tutor.objects.create(
-                name = profile_data[ 'first_name' ] + ' ' + profile_data[ 'last_name' ],
-                email = user_data[ 'email' ],
+                name = user.get_full_name(),
+                email = user.email,
                 phone = profile_data[ 'phone' ],
                 qualifications = profile_data[ 'qualifications' ],
                 rate = profile_data[ 'rate' ],
