@@ -3,6 +3,7 @@
 body.skuletutors {
     background: #fff;
     font-family: "Source Sans Pro", "Lucida Grande", Tahoma, sans-serif;
+    text-rendering: optimizelegibility;
 }
 
 body.skuletutors .navbar-inner #logo {
