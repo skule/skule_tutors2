@@ -26,7 +26,7 @@
                 <div class="span4">
                     <h3>Become a tutor</h3>
                     <!-- TODO reformat this box so things lines up -->
-                    <p style="margin-bottom:5px;">Applications for Skule Tutors are now open.</p>
+                    <p style="margin-bottom:5px;">Applications for Skule&trade; Tutors are now open.</p>
                     <a class="btn btn-info" href="{% url tutors.views.TutorApplication %}">Apply to be a tutor</a>
 
                 </div>
@@ -81,10 +81,10 @@
                             </div>
                             <div class="span6 qualifications" id="qualification_div{{ forloop.counter }}"
                                  data-toggle="collapse" data-target="#qualifications{{ forloop.counter }}">
-                                <h5>Qualifications <i class="icon-chevron-down"></i></h5>
+                                <h5 class="muted">Qualifications <i class="icon-chevron-down"></i></h5>
                                 <!-- TODO http://jsfiddle.net/rlemon/g8c8A/6/ -->
                                 <ul class="unstyled collapse" id="qualifications{{ forloop.counter }}"
-                                    data-toggle="collapse" style="height:20px;">
+                                    data-toggle="collapse" style="height:40px;">
                                     {% for line in tutor.qualifications_as_list %}
                                         <li>{{ line }}</li>
                                     {% endfor %}
