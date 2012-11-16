@@ -14,6 +14,9 @@ class Course(models.Model):
         self.course_code = str(self.course_code).upper()
         super(Course, self).save()
 
+    def option_label(self):
+        return self.course_code + ' | ' + self.name
+
     def __unicode__(self):
         return self.course_code
 

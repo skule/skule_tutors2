@@ -14,11 +14,13 @@
                     <p class="lead">Skule&trade; Tutors is the official tutors database for U of T Engineering.</p>
                     <h4>Find a tutor</h4>
 
-                    <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
-                        <input type="search" name="search" placeholder="Find a tutor by course code or tutor name"
-                               class="input-xxlarge search-query"
-                               value='{% block search_field %}{% endblock %}'>
-                        <input type="submit" class="btn" value="Search">
+                    <form action="{% url tutors.views.SearchTutors %}" class="navbar-form form-search" method="GET">
+                        <div class="input-append">
+                            <input type="search" name="search" placeholder="Find a tutor by course code or tutor name"
+                                   class="input-xxlarge search-query"
+                                   value='{% block search_field %}{% endblock %}'>
+                            <input type="submit" class="btn" value="Search">
+                        </div>
                     </form>
                 </div>
                 <div class="span4">
@@ -77,15 +79,15 @@
                                     {% endfor %}
                                 </ul>
                             </div>
-                            <div class="span6 qualifications" id="qualification_div{{ forloop.counter }}">
-                                <h5 data-toggle="collapse" data-target="#qualifications{{ forloop.counter }}" data-parent="#qualification_div{{ forloop.counter }}">
-                                    Qualifications
-                                </h5>
+                            <div class="span6 qualifications" id="qualification_div{{ forloop.counter }}"
+                                 data-toggle="collapse" data-target="#qualifications{{ forloop.counter }}">
+                                <h5>Qualifications <i class="icon-chevron-down"></i></h5>
                                 <!-- TODO http://jsfiddle.net/rlemon/g8c8A/6/ -->
-                                <ul class="unstyled collapse" id="qualifications{{ forloop.counter }}" data-toggle="collapse" style="height:20px;">
-                                {% for line in tutor.qualifications_as_list %}
-                                <li>{{ line }}</li>
-                                {% endfor %}
+                                <ul class="unstyled collapse" id="qualifications{{ forloop.counter }}"
+                                    data-toggle="collapse" style="height:20px;">
+                                    {% for line in tutor.qualifications_as_list %}
+                                        <li>{{ line }}</li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
