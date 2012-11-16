@@ -6,7 +6,8 @@ body.skuletutors {
 }
 
 body.skuletutors .navbar-inner #logo {
-    margin: 0; padding: 0 10px 0 0 ;
+    margin: 0;
+    padding: 0 10px 0 0;
 }
 
 body.skuletutors .navbar-inner #logo img {
@@ -28,7 +29,7 @@ body.skuletutors .page-container h1 a {
     color: rgb(254, 112, 56);
     font-weight: 200;
     border: 0;
-    margin:0;
+    margin: 0;
 }
 
 body.skuletutors .header-row hr {
@@ -104,4 +105,13 @@ body.skuletutors .errorlist {
 
 input {
     width: 300px;
+}
+
+textarea {
+    width: 300px;
+}
+
+select[multiple] {
+    width: 300px;
+    height: auto;
 }

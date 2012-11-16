@@ -19,11 +19,11 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" type="text/css" media="all">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css" type="text/css" media="all">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/skule_tutor.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" type="text/css" media="all">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic'
           rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/skule_tutor.css" type="text/css" media="all">
     <!-- wordpress head functions -->
     <!-- end of wordpress head -->
     <script src="http://code.jquery.com/jquery.min.js"></script>
@@ -73,11 +73,13 @@
                         </ul>
                     </li>
                     <li>
-                        <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
-                            <input type="search" name="search" placeholder="Find your tutor"
-                                   class="input-xlarge search-query"
-                                   value='{% block search_field %}{% endblock %}'>
-                            <input type="submit" class="btn" value="Search">
+                        <form action="{% url tutors.views.SearchTutors %}" class="navbar-form form-search" method="GET">
+                            <div class="input-append">
+                                <input type="search" name="search" placeholder="Find your tutor"
+                                       class="input-xlarge search-query"
+                                       value='{% block search_field %}{% endblock %}'>
+                                <input type="submit" class="btn" value="Search">
+                            </div>
                         </form>
                     </li>
                 </ul>
@@ -93,7 +95,7 @@
         </div>
 
         <div class="span3">
-                <br>
+            <br>
             {% if user.is_authenticated %}
                 <div class="btn-group pull-right">
                     <a href="#" class="btn btn-info disabled">{{ user.email }} </a>
