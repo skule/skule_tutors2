@@ -80,9 +80,9 @@
                                 </ul>
                             </div>
                             <div class="span6 qualifications">
-                                <h5 class="muted">Qualifications <i class="icon-chevron-down"></i></h5>
+                                <h5 class="muted heading">Qualifications <i class="icon-chevron-down"></i></h5>
                                 <!-- TODO http://jsfiddle.net/rlemon/g8c8A/6/ -->
-                                <ul class="unstyled">
+                                <ul class="unstyled content" id="list">
                                     {% for line in tutor.qualifications_as_list %}
                                         <li>{{ line }}</li>
                                     {% endfor %}

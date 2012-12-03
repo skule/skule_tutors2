@@ -117,10 +117,11 @@ select[multiple] {
     height: auto;
 }
 
-.collapse-open {
-    height: auto;
+.qualifications .content {
+    height: 40px;
+    overflow: hidden;
 }
 
-.collapse-close {
-    height: 40px;
+.qualifications .open {
+    height: auto;
 }

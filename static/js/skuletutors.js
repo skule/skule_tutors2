@@ -1,8 +1,7 @@
-$(document).ready(function() {
-        //collapsible management
-        $('.qualifications').collapsible({
-            defaultOpen: 'section1,section3',
-            cssClose: 'collapse-close',
-            cssOpen: 'collapse-open',
-        });
-    });
+jQuery(document).ready(function() {
+  //toggle the componenet with class msg_body
+  jQuery(".qualifications .heading").click(function()
+  {
+    jQuery(this).next(".qualifications .content").toggleClass('open');
+  });
+});
