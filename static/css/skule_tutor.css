@@ -105,14 +105,25 @@ body.skuletutors .errorlist {
 }
 
 input {
-    width: 300px;
+    width: 21em;
 }
 
 textarea {
-    width: 300px;
+    width: 21em;
 }
 
 select[multiple] {
-    width: 300px;
+    width: 22em;
+    height: 20em;
+}
+
+.qualifications .content {
+    height: 3em;
+    overflow: hidden;
+}
+
+.qualifications .open {
     height: auto;
 }
+
+.form-search .input
