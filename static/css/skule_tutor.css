@@ -116,3 +116,11 @@ select[multiple] {
     width: 300px;
     height: auto;
 }
+
+.collapse-open {
+    height: auto;
+}
+
+.collapse-close {
+    height: 40px;
+}

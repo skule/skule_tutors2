@@ -11,7 +11,7 @@
         <div class="well">
             <div class="row-fluid">
                 <div class="span8">
-                    <p class="lead">Skule&trade; Tutors is the official tutors database for U of T Engineering.</p>
+                    <p class="lead">Skule Tutors is the official tutors database for U of T Engineering.</p>
                     <h4>Find a tutor</h4>
 
                     <form action="{% url tutors.views.SearchTutors %}" class="navbar-form form-search" method="GET">
@@ -26,7 +26,7 @@
                 <div class="span4">
                     <h3>Become a tutor</h3>
                     <!-- TODO reformat this box so things lines up -->
-                    <p style="margin-bottom:5px;">Applications for Skule&trade; Tutors are now open.</p>
+                    <p style="margin-bottom:5px;">Applications for Skule Tutors are now open.</p>
                     <a class="btn btn-info" href="{% url tutors.views.TutorApplication %}">Apply to be a tutor</a>
 
                 </div>
@@ -79,12 +79,10 @@
                                     {% endfor %}
                                 </ul>
                             </div>
-                            <div class="span6 qualifications" id="qualification_div{{ forloop.counter }}"
-                                 data-toggle="collapse" data-target="#qualifications{{ forloop.counter }}">
+                            <div class="span6 qualifications">
                                 <h5 class="muted">Qualifications <i class="icon-chevron-down"></i></h5>
                                 <!-- TODO http://jsfiddle.net/rlemon/g8c8A/6/ -->
-                                <ul class="unstyled collapse" id="qualifications{{ forloop.counter }}"
-                                    data-toggle="collapse" style="height:40px;">
+                                <ul class="unstyled">
                                     {% for line in tutor.qualifications_as_list %}
                                         <li>{{ line }}</li>
                                     {% endfor %}
