@@ -9,24 +9,25 @@
         <br>
 
         <div class="well">
-            <div class="row-fluid ">
+            <div class="row-fluid">
                 <div class="span8">
-                    <p class="lead">Skule&trade; Tutors is the official tutors database for U of T Engineering.</p>
+                    <p class="lead">Skule Tutors is the official tutors database for U of T Engineering.</p>
                     <h4>Find a tutor</h4>
 
-                    <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
-                        <input type="search" name="search" placeholder="Find a tutor by course code or tutor name"
-                               class="input-xxlarge"
-                               value='{% block search_field %}{% endblock %}'><input
-                            type="submit" class="btn btn-inverse" value="Search">
+                    <form action="{% url tutors.views.SearchTutors %}" class="navbar-form form-search" method="GET">
+                        <div class="input-append" style="width: 100%;">
+                            <input type="search" name="search" placeholder="Find a tutor by course code or tutor name"
+                                   class="input-xlarge search-query home-search"
+                                   value='{% block search_field %}{% endblock %}'>
+                            <input type="submit" class="btn" value="Search">
+                        </div>
                     </form>
                 </div>
                 <div class="span4">
                     <h3>Become a tutor</h3>
 
-                    <p>Applications for Skule Tutors are now open.</p>
+                    <p style="margin-bottom:5px;">Applications for Skule Tutors are now open.</p>
                     <a class="btn btn-info" href="{% url tutors.views.TutorApplication %}">Apply to be a tutor</a>
-
                 </div>
             </div>
         </div>
@@ -78,13 +79,13 @@
                                 </ul>
                             </div>
                             <div class="span6 qualifications">
-                                <h5 class="muted">
-                                    Qualifications
-                                </h5>
-
-                                <p>
-                                    {{ tutor.qualifications }}
-                                </p>
+                                <h5 class="muted heading">Qualifications <i class="icon-chevron-down"></i></h5>
+                                <!-- TODO http://jsfiddle.net/rlemon/g8c8A/6/ -->
+                                <ul class="unstyled content" id="list">
+                                    {% for line in tutor.qualifications_as_list %}
+                                        <li>{{ line }}</li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
 

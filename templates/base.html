@@ -19,11 +19,11 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" type="text/css" media="all">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css" type="text/css" media="all">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/skule_tutor.css" type="text/css" media="all">
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic'
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" type="text/css" media="all">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic'
           rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/skule_tutor.css" type="text/css" media="all">
 
 </head>
 
@@ -48,7 +48,7 @@
 
 
                             <li>
-                                <a tabindex="-1" href="http://www.skule.ca/academic-services">Skule&trade; Academic
+                                <a tabindex="-1" href="http://www.skule.ca/academic-services">Skule Academic
                                     Services</a>
                             </li>
                             <li class="divider"></li>
@@ -63,17 +63,19 @@
                             <li class="divider"></li>
                             <li>
                                 <a tabindex="-1" href="http://www.skule.ca">Go to
-                                    <strong>Skule&trade;.ca</strong> &rsaquo;</a>
+                                    <strong>Skule.ca</strong> &rsaquo;</a>
                             </li>
 
                         </ul>
                     </li>
                     <li>
-                        <form action="{% url tutors.views.SearchTutors %}" class="navbar-form" method="GET">
-                            <input type="search" name="search" placeholder="Search by course code or tutor name"
-                                   class="input-xlarge"
-                                   value='{% block search_field %}{% endblock %}'><input
-                                type="submit" class="btn" value="Search">
+                        <form action="{% url tutors.views.SearchTutors %}" class="navbar-form form-search" method="GET">
+                            <div class="input-append">
+                                <input type="search" name="search" placeholder="Find your tutor"
+                                       class="input-xlarge search-query"
+                                       value='{% block search_field %}{% endblock %}'>
+                                <input type="submit" class="btn" value="Search">
+                            </div>
                         </form>
                     </li>
                 </ul>
@@ -84,16 +86,17 @@
 
 <div class="page-container container">
     <div class="row header-row">
-        <h1 class="span9">
-            <a href="/">Skule Tutors</a>
-        </h1>
+        <div class="span9">
+            <h1><a href="/">Skule Tutors</a>
+                <small>BETA</small>
+            </h1>
+        </div>
 
         <div class="span3">
+            <br>
             {% if user.is_authenticated %}
-                <p class="user-actions">
-                    <a href="#">{{ user.email }} </a>
-                </p>
                 <div class="btn-group pull-right">
+                    <a href="#" class="btn btn-info disabled">{{ user.email }} </a>
                     <a class="btn" href="{% url django.contrib.auth.views.logout %}">Logout</a>
                 </div>
             {% else %}
@@ -129,16 +132,25 @@
         <!-- CONTENT GOES HERE -->
     {% endblock %}
     <footer class="row">
-        <p class="muted span5">
-            A service of the <a href="http://skule.ca/about-us">University of Toronto Engineering Society</a>
-        </p>
+        <div class="span11">
+            <p class="muted">
+                A service of the <a href="http://skule.ca/about-skule/">University of Toronto Engineering Society</a>
+            </p>
 
+            <p class="muted">Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0"
+                                                        target="_blank">Apache License v2.0</a>. Documentation licensed
+                under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+
+            <p class="muted">Icons from <a href="http://glyphicons.com">Glyphicons Free</a>,
+                licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        </div>
         <p class="muted span1 pull-right">
             <a class="pull-right" href="/admin">Admin</a>
         </p>
     </footer>
 </div>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/skuletutors.js"></script>
 </body>
 </html>
