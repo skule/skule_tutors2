@@ -127,6 +127,6 @@ select[multiple] {
 }
 
 .form-search .home-search {
-    width: -webkit-calc(100% -10em); /* WebKit 536.3 (Chrome 19) and above, experimental */
-    width: calc(100% -10em); /* final CSS3 compliant implementation; Firefox 16 and IE 9, and above */
+    width: -webkit-calc(100% - 10em); /* WebKit 536.3 (Chrome 19) and above, experimental */
+    width: calc(100% - 10em); /* final CSS3 compliant implementation; Firefox 16 and IE 9, and above */
 }
