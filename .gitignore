@@ -3,8 +3,7 @@
 # C extensions
 *.so
 
-# Mac
-*.DS_Store*
+
 
 # Packages
 *.egg
