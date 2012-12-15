@@ -34,7 +34,7 @@ class Tutor(models.Model):
 @receiver(post_delete, sender = Tutor)
 def Tutor_delete_handler(sender, instance, **kwargs):
     user = instance.auth
-    if not user.is_staff and not user.is_superuser:
+    if not user.is_staff and not user.is_superuser: # OMG I used DeMorgan's theorem
         user.delete()
 
         # add admin log entry for user deletion
