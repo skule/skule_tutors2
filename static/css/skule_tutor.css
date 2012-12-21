@@ -124,6 +124,7 @@ select[multiple] {
 
 .qualifications .open {
     height: auto;
+    min-height: 3em;
 }
 
 .form-search .home-search {
