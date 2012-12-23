@@ -1,4 +1,5 @@
 Gunicorn deploy
 Refine application form - split account and profile creation
 Add view by course
-delete behaviour - deactivate user when their profile is deleted.
+Add South
+add everything on http://offbytwo.com/2012/01/18/deploying-django-to-heroku.html

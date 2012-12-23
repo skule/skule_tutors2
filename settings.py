@@ -1,7 +1,9 @@
 import os
+import dj_database_url
+
 # Django settings for skule_tutors2 project.
 
-DEBUG = False
+DEBUG = eval(os.environ.get('DJANGO_DEBUG', 'True'))
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -12,15 +14,18 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql',
         # 'sqlite3' or 'oracle'.
-        'NAME': 'database/database.db', # Or path to database file if using sqlite3.
-        'USER': '', # Not used with sqlite3.
-        'PASSWORD': '', # Not used with sqlite3.
-        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '', # Set to empty string for default. Not used with sqlite3.
+        'NAME': 'tutors', # Or path to database file if using sqlite3.
+        'USER': 'tutors_dev', # Not used with sqlite3.
+        'PASSWORD': 'admin', # Not used with sqlite3.
+        'HOST': 'localhost', # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432', # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+if os.getenv('DATABASE_URL'):
+    DATABASES[ 'default' ] = dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -58,7 +63,11 @@ MEDIA_URL = '/media'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static').replace('\\', '/')
+# Serve file from STATIC_ROOT only if debug is false
+if DEBUG:
+    STATIC_ROOT = ''
+else:
+    STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static').replace('\\', '/')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -74,8 +83,11 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-
     )
+
+# Serve files from STATICFILES_DIRS only if DEBUG is turned on
+if DEBUG:
+    STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static').replace('\\', '/'),)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -86,13 +98,15 @@ STATICFILES_FINDERS = (
     )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'NxG6PeAtVG9n776UiHGqlsWOTR7aqVNBbtfEIhaIoeRSZQcYJv_EUchsZd5zltERoLooRu0O2OTcGFSH4pcAxZcVjKrYmPTHd'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY',
+                       'NxG6PeAtVG9n776UiHGqlsWOTR7aqVNBbtfEIhaIoeRSZQcYJv_EU'
+                       'chsZd5zltERoLooRu0O2OTcGFSH4pcAxZcVjKrYmPTHd')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    #     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.eggs.Loader',
     )
 
 MIDDLEWARE_CLASSES = (
@@ -121,14 +135,23 @@ INSTALLED_APPS = (
 
     #installed apps
     'emailusernames',
+    'south',
 
     #skule apps
     'tutors',
     'course_manage',
-
-    # server
-    'gunicorn'
     )
+
+# Install gunicorn if it's available as a package
+# to allow development on windows machines
+try:
+    import gunicorn
+    gunicorn_installed = True
+except ImportError, e:
+    gunicorn_installed = False
+
+if gunicorn_installed:
+    INSTALLED_APPS += ('gunicorn',)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -161,7 +184,3 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/'
 
 OPEN_SIGNUP = True
-
-import dj_database_url
-
-DATABASES[ 'default' ] = dj_database_url.config()

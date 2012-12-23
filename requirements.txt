@@ -1,5 +1,6 @@
 Django==1.3.4
 django-email-as-username==1.6.2
-psycopg2==2.4.5
-dj-database-url==0.2.0
 gunicorn
+psycopg2
+dj-database-url
+South==0.7.6
