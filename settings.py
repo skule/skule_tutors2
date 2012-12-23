@@ -86,7 +86,7 @@ STATICFILES_FINDERS = (
     )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'NxG6PeAtVG9n776UiHGqlsWOTR7aqVNBbtfEIhaIoeRSZQcYJv_EUchsZd5zltERoLooRu0O2OTcGFSH4pcAxZcVjKrYmPTHd'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'sF?r@|-VzZA~\\v;Kd1\\CFYw--2YNoe9\'D!U?#,X>UB~/$&jGTF9L./BcB[;hxyQ')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -125,7 +125,10 @@ INSTALLED_APPS = (
 
     #skule apps
     'tutors',
-    'course_manage'
+    'course_manage',
+
+    # server
+    'gunicorn'
     )
 
 # A sample logging configuration. The only tangible logging
@@ -159,3 +162,7 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/'
 
 OPEN_SIGNUP = True
+
+import dj_database_url
+
+DATABASES[ 'default' ] = dj_database_url.config()
