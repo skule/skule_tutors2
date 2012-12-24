@@ -146,12 +146,9 @@ INSTALLED_APPS = (
 # to allow development on windows machines
 try:
     import gunicorn
-    gunicorn_installed = True
-except ImportError, e:
-    gunicorn_installed = False
-
-if gunicorn_installed:
     INSTALLED_APPS += ('gunicorn',)
+except ImportError, e:
+    pass
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
