@@ -1,7 +1,8 @@
 from emailusernames.forms import EmailUserCreationForm
 from django.contrib.auth.models import Group
 from django.contrib import messages
-from forms import ApplicationForm
+from django.contrib.auth.decorators import login_required
+from forms import ApplicationForm, TutorProfileForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -64,6 +65,28 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
                                    profile_creation_form = profile_creation_form),
                               context_instance = RequestContext(request))
 
+@login_required()
+def TutorProfileEdit(request, template = 'tutors/tutor_profile_edit.html'):
+    tutor = Tutor.objects.get(auth = request.user)
+    if request.method == 'POST':
+        profile_form = TutorProfileForm(request.POST)
+        if profile_form.is_valid():
+            form_data = profile_form.cleaned_data
+            tutor.name = form_data['name']
+            tutor.email = form_data['email']
+            tutor.phone = form_data['phone']
+            tutor.qualifications = form_data['qualifications']
+            tutor.taught_courses = form_data['taught_courses']
+            tutor.rate = form_data['rate']
+            tutor.save()
+            messages.add_message(request, messages.INFO,
+                                 'Your profile has been successfully edited.')
+            return HttpResponseRedirect('/')
+    else:
+        profile_form = TutorProfileForm(tutor.POST_data())
+    return render_to_response(template,
+                              {'profile_form': profile_form},
+                              context_instance = RequestContext(request))
 
 def SearchTutors(request, template = 'tutors/search.html'):
     if request.GET.get('search'):

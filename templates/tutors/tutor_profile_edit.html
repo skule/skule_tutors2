@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Skule Tutors{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span12">
+            <h2>Edit your Tutor profile</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <form action="{% url tutors.views.TutorProfileEdit %}" method="post">{% csrf_token %}
+                <div class="span6">
+                    {% for field in profile_form %}
+                        {{ field.errors }}
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <span class="help-block">{{ field.help_text }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <input type="submit" class="btn btn-info" value="Save"/>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
