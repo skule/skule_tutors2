@@ -3,26 +3,37 @@
 {% block title %}Skule Tutors{% endblock %}
 
 {% block content %}
-    <div class="row">
+    <div class="row-fluid">
         <div class="span12">
-            <h2>Edit your Tutor profile</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="span12">
+            <div class="span6">
+            <h2>Edit Your Tutor Profile</h2>
             <form action="{% url tutors.views.TutorProfileEdit %}" method="post">{% csrf_token %}
-                <div class="span6">
-                    {% for field in profile_form %}
+                {% for field in profile_form %}
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                        <span class="help-block">{{ field.help_text }}</span>
+                    {% endif %}
+                {% endfor %}<br>
+                <input type="submit" class="btn btn-info" value="Save Profile"/>
+            </form>
+            </div>
+            <div class="span6">
+            <h2>Change Your Password</h2>
+                <form action="{% url django.contrib.auth.views.password_change %}" method="post">
+                    {% csrf_token %}
+                    {% for field in password_change_form %}
                         {{ field.errors }}
                         {{ field.label_tag }}
                         {{ field }}
                         {% if field.help_text %}
                             <span class="help-block">{{ field.help_text }}</span>
                         {% endif %}
-                    {% endfor %}
-                </div>
-                <input type="submit" class="btn btn-info" value="Save"/>
-            </form>
+                    {% endfor %}<br>
+                    <input type="submit" class="btn btn-warning" value="Change Password"/>
+                </form>
+            </div>
         </div>
     </div>
 

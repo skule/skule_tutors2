@@ -94,7 +94,7 @@
             {% if user.is_authenticated %}
                 <div class="btn-group pull-right">
                     <a href="#" class="btn btn-info disabled">{{ user.email }} </a>
-                    <a href="{% url tutors.views.TutorProfileEdit %}" class="btn">Edit Profile</a>
+                    <a href="{% url tutors.views.TutorProfileEdit %}" class="btn">Edit Account</a>
                     <a class="btn" href="{% url django.contrib.auth.views.logout %}">Logout</a>
                 </div>
             {% else %}

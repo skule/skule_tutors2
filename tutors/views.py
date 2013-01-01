@@ -2,6 +2,7 @@ from emailusernames.forms import EmailUserCreationForm
 from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from forms import ApplicationForm, TutorProfileForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -84,8 +85,10 @@ def TutorProfileEdit(request, template = 'tutors/tutor_profile_edit.html'):
             return HttpResponseRedirect('/')
     else:
         profile_form = TutorProfileForm(tutor.POST_data())
+    password_change_form = PasswordChangeForm(user=request.user)
     return render_to_response(template,
-                              {'profile_form': profile_form},
+                              {'profile_form': profile_form,
+                               'password_change_form': password_change_form},
                               context_instance = RequestContext(request))
 
 def SearchTutors(request, template = 'tutors/search.html'):
