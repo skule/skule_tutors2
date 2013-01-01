@@ -5,6 +5,7 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.contrib.admin.models import LogEntry, DELETION
 from django.contrib.contenttypes.models import ContentType
+from django.http import QueryDict
 
 class Tutor(models.Model):
     # personal info
@@ -27,6 +28,22 @@ class Tutor(models.Model):
 
     def qualifications_as_list(self):
         return self.qualifications.split('\n')
+
+    def POST_data(self):
+        """
+        Returns the personal info and the tutor info of this profile as
+        if it was a queryDict from a post request
+        """
+        data = QueryDict('').copy()
+        data.update({'name':self.name,
+                     'email':self.email,
+                     'phone':self.phone,
+                     'qualifications':self.qualifications,
+                     'rate':str(self.rate)})
+        for course in self.taught_courses.all():
+            data.update({'taught_courses':course.course_code})
+        return data
+
 
         # TODO use python phonenumbers to process the phone number
 

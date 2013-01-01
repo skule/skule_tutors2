@@ -44,8 +44,6 @@
                                 src="{{ STATIC_URL }}img/logo.png" alt="Skule"> Tutors <b
                                 class="caret hide-tablet hide-phone"></b></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-
-
                             <li>
                                 <a tabindex="-1" href="http://www.skule.ca/academic-services">Skule Academic
                                     Services</a>
@@ -96,6 +94,7 @@
             {% if user.is_authenticated %}
                 <div class="btn-group pull-right">
                     <a href="#" class="btn btn-info disabled">{{ user.email }} </a>
+                    <a href="{% url tutors.views.TutorProfileEdit %}" class="btn">Edit Account</a>
                     <a class="btn" href="{% url django.contrib.auth.views.logout %}">Logout</a>
                 </div>
             {% else %}
@@ -136,7 +135,7 @@
                 A service of the <a href="http://skule.ca/about-skule/">University of Toronto Engineering Society</a>
             </p>
 
-            <p class="muted">A Skule&trade; open source project,code at
+            <p class="muted">A Skule&trade; open source project, please contribute at
             <a href="https://github.com/EngTurtle/skule_tutors2">https://github.com/EngTurtle/skule_tutors2</a></p>
 
             <p class="muted">Icons from <a href="http://glyphicons.com">Glyphicons Free</a>,

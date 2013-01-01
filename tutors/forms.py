@@ -10,7 +10,6 @@ class CourseChoiceField(forms.ModelMultipleChoiceField):
         except AttributeError:
             return unicode(obj)
 
-
 class ApplicationForm(forms.Form):
     """
     Form for tutor applications
@@ -31,3 +30,18 @@ class ApplicationForm(forms.Form):
                                                                       'rows': '3'}))
 
 
+class TutorProfileForm(forms.Form):
+    """
+    Form for tutor profile editing
+    """
+    name = forms.CharField(label='Displayed Name')
+    email = forms.EmailField(label='Student Contact Email')
+    phone = forms.CharField(required = False)
+
+    taught_courses = CourseChoiceField(queryset = Course.objects.all(),
+                                       widget = forms.SelectMultiple())
+    rate = forms.DecimalField(decimal_places = 2, max_digits = 10,
+                              widget = forms.TextInput(attrs = {'placeholder': "CAD / Hour"}))
+    qualifications = forms.CharField(widget = forms.Textarea(attrs = {'placeholder': "A few lines about your education "
+                                                                                     "background",
+                                                                      'rows': '3'}))
