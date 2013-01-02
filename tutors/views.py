@@ -75,7 +75,7 @@ def TutorProfileEdit(request, template = 'tutors/tutor_profile_edit.html'):
 
     tutor = Tutor.objects.get(auth = request.user)
     if request.method == 'POST':
-        profile_form = TutorProfileForm(request.POST)
+        profile_form = TutorProfileForm(tutor, request.POST)
         if profile_form.is_valid():
             form_data = profile_form.cleaned_data
             tutor.name = form_data['name']
@@ -91,7 +91,7 @@ def TutorProfileEdit(request, template = 'tutors/tutor_profile_edit.html'):
             messages.add_message(request, messages.INFO, message_test)
             return HttpResponseRedirect('/')
     else:
-        profile_form = TutorProfileForm(tutor.POST_data())
+        profile_form = TutorProfileForm(tutor, tutor.POST_data())
     password_change_form = PasswordChangeForm(user=request.user)
 
     message_test = "Your profile is approved and displayed."
