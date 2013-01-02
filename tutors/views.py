@@ -1,5 +1,6 @@
 from emailusernames.forms import EmailUserCreationForm
 from django.contrib.auth.models import Group
+from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -40,6 +41,8 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
             user.first_name = profile_data[ 'first_name' ][ 0 ].upper() + profile_data[ 'first_name' ][ 1: ].lower()
             user.last_name = profile_data[ 'last_name' ][ 0 ].upper() + profile_data[ 'last_name' ][ 1: ].lower()
             user.save()
+
+            login(request, user)
 
             # Fill the tutor profile
             tutor = Tutor.objects.get(auth=user)

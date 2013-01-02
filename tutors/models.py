@@ -66,10 +66,9 @@ def Tutor_delete_handler(sender, instance, **kwargs):
         user.delete()
 
         # add admin log entry for user deletion
-        delete_entries = LogEntry.objects.filter(content_type__pk = ContentType.objects.get_for_model(instance).pk)\
-                                         .filter(object_id = instance.pk)\
-                                         .filter(action_flag = DELETION)\
-                                         .order_by('-action_time')
+        delete_entries = LogEntry.objects.filter(content_type__pk = ContentType.objects.get_for_model(instance).pk,
+                                                 object_id = instance.pk, action_flag = DELETION)\
+        .order_by('-action_time')
         # add log entry only if tutor is deleted via the admin interface
         if delete_entries:
             # TODO create entry only if deleted in the last 30 secs
