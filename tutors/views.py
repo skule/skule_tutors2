@@ -88,12 +88,17 @@ def TutorProfileEdit(request, template = 'tutors/tutor_profile_edit.html'):
             message_test = 'Your profile has been successfully saved.'
             if not tutor.approved:
                 message_test += ' And is pending approval.'
-            messages.add_message(request, messages.INFO,
-                                 message_test)
+            messages.add_message(request, messages.INFO, message_test)
             return HttpResponseRedirect('/')
     else:
         profile_form = TutorProfileForm(tutor.POST_data())
     password_change_form = PasswordChangeForm(user=request.user)
+
+    message_test = "Your profile is approved and displayed."
+    if not tutor.approved:
+        message_test = "Your profile is pending approval"
+
+    messages.add_message(request, messages.INFO, message_test)
     return render_to_response(template,
                               {'profile_form': profile_form,
                                'password_change_form': password_change_form},
