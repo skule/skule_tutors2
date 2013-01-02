@@ -42,8 +42,6 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
             user.last_name = profile_data[ 'last_name' ][ 0 ].upper() + profile_data[ 'last_name' ][ 1: ].lower()
             user.save()
 
-            login(request, user)
-
             # Fill the tutor profile
             tutor = Tutor.objects.get(auth=user)
             tutor.name = user.get_full_name()
@@ -59,7 +57,7 @@ def TutorApplication(request, template = 'tutors/tutor_application.html'):
             messages.add_message(request, messages.INFO,
                                  'Your application has been successfully received and is pending approval. Thank you '
                                  'for applying for Skule Tutors.')
-            return HttpResponseRedirect(reverse('tutors.views.TutorProfileEdit'))
+            return HttpResponseRedirect('/')
     else:
         user_creation_form = EmailUserCreationForm()
         profile_creation_form = ApplicationForm()
