@@ -1,30 +1,41 @@
 from django.db import models
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.contrib.auth.models import User
 from course_manage.models import Course
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.contrib.admin.models import LogEntry, DELETION
 from django.contrib.contenttypes.models import ContentType
 from django.http import QueryDict
 
+def validate_rate_positive(value):
+    if value < 0:
+        raise ValidationError(u"%s is not a valid rate" % value)
+
 class Tutor(models.Model):
     # personal info
     name = models.CharField(max_length = 50)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     phone = models.CharField(max_length = 20, blank = True)
 
     # tutor info
-    qualifications = models.TextField()
+    qualifications = models.TextField(blank=True)
     taught_courses = models.ManyToManyField(Course, null = True)
-    rate = models.DecimalField(decimal_places = 2, max_digits = 10)
+    rate = models.DecimalField(decimal_places = 2, max_digits = 10, default=0, validators=[validate_rate_positive])
 
     # system info
-    auth = models.OneToOneField(User, null = True)
+    auth = models.OneToOneField(User, null = True, editable=False)
     approved = models.BooleanField(default = False)
-    last_updated = models.DateTimeField(auto_now = True, auto_created = True)
+    last_updated = models.DateTimeField(auto_now = True, auto_created = True, editable=False)
 
     def __unicode__(self):
         return self.name
+
+    def displayed_rate(self):
+        if self.rate > 0:
+            return unicode(self.rate)
+        else:
+            return 'Rate provided upon request'
 
     def qualifications_as_list(self):
         return self.qualifications.split('\n')
@@ -60,6 +71,7 @@ def Tutor_delete_handler(sender, instance, **kwargs):
         .order_by('-action_time')
         # add log entry only if tutor is deleted via the admin interface
         if delete_entries:
+            # TODO create entry only if deleted in the last 30 secs
             delete_entry = delete_entries[ 0 ]
             LogEntry.objects.log_action(
                 user_id = delete_entry.user.pk,
@@ -69,3 +81,14 @@ def Tutor_delete_handler(sender, instance, **kwargs):
                 action_flag = DELETION,
                 change_message = unicode('deleted user per Tutor_delete_handler signal')
             )
+
+@receiver(post_save, sender = User)
+def Create_tutor_from_user(sender, instance, **kwargs):
+    try:
+        Tutor.objects.get(auth = instance)
+    except ObjectDoesNotExist:
+        tutor = Tutor.objects.create(name = instance.get_full_name(),
+                                     email = instance.email,
+                                     rate = 0,
+                                     auth = instance)
+        tutor.save(force_update=True)
