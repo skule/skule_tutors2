@@ -33,7 +33,8 @@ urlpatterns = patterns('',
                        url(r'^auth/login$', 'django.contrib.auth.views.login',
                            {'authentication_form': EmailAuthenticationForm}, name = 'login'),
 
-                       url(r'^auth/logout', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+                       url(r'^auth/logout$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+                       url(r'^auth/passwordchange$', 'django.contrib.auth.views.password_change', {'post_change_redirect': '/'}),
 
                        # Uncomment the admin/doc line below to enable admin documentation:
                        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
