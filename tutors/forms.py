@@ -5,6 +5,7 @@ from course_manage.models import Course
 from tutors.models import Tutor
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+import string
 
 def is_email_used(email):
     tutors = Tutor.objects.filter(email=email)
@@ -64,3 +65,22 @@ class TutorProfileForm(forms.Form):
         if email != self.tutor.email:
             is_email_used(email)
         return email
+
+class EmailTutorForm(forms.Form):
+    student_email = forms.EmailField(label=u'Please enter your utoronto.ca email address')
+    name = forms.CharField(label=u'Your Name')
+    message = forms.CharField(widget = forms.Textarea(attrs = {'placeholder': u"Please tell the tutor what subject you"
+                                                                              u" need help with, and they will get back"
+                                                                              u" to you.",
+                                                                      'rows': '3'}))
+    def __init__(self, tutor, *args, **kwargs):
+        self.tutor = tutor
+        super(EmailTutorForm, self).__init__(*args, **kwargs)
+
+    def clean_email(self):
+        email = self.cleaned_data['student_email']
+        if string.find(email,'utoronto.ca') == -1:
+            raise ValidationError(u'This service is only available to registered University of Toronto Students.')
+        else:
+            return email
+
