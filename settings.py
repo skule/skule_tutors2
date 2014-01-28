@@ -171,6 +171,20 @@ LOGGING = {
     }
 }
 
+# email settings
+
+if os.getenv('SMTPSERVER'):
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.getenv('SMTPSERVER')
+    EMAIL_HOST_USER = os.getenv('SMTPUSER')
+    EMAIL_HOST_PASSWORD = os.getenv('SMTPPASS')
+    EMAIL_PORT = int(os.getenv('SMTPPORT'))
+    EMAIL_USE_TLS = True
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 1025
+
 #django-email-as-username settings
 AUTHENTICATION_BACKENDS = (
     'emailusernames.backends.EmailAuthBackend',
